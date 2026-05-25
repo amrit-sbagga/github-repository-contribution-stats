@@ -54180,7 +54180,10 @@ const app = express__WEBPACK_IMPORTED_MODULE_5___default()();
 app.use(compression__WEBPACK_IMPORTED_MODULE_6___default()());
 app.get('/api', async (req, res) => {
     const { username, hide, hide_title, hide_border, hide_contributor_rank, order_by, line_height, title_color, icon_color, text_color, bg_color, custom_title, border_radius, border_color, theme, cache_seconds, locale, combine_all_yearly_contributions, limit, } = req.query;
-    res.set('Content-Type', 'image/svg+xml');
+    if (username !== "amrit-sbagga") {
+       return res.status(403).send("Access Denied: Personal Instance Only");
+    }
+	res.set('Content-Type', 'image/svg+xml');
     if (locale && !(0,_translations__WEBPACK_IMPORTED_MODULE_4__.isLocaleAvailable)(locale)) {
         return res.send((0,_common_utils__WEBPACK_IMPORTED_MODULE_1__.renderError)('Something went wrong', 'Language not found'));
     }
